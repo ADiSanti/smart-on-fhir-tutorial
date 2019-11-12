@@ -139,6 +139,7 @@
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
     var html = '';
+    html +='<thead>';
     html +='<tr>';
     html +='<th>Start:</th>'
     html +='<th>End:</th>'
@@ -147,6 +148,8 @@
     html +='<th>Status:</th>'
     html +='<th>ID:</th>'
     html +='</tr>';
+    html +='</thead>';
+    html +='<tbody>';
     $.each(p.appointments,function(key,value){
         html +='<tr>';
         html +='<td>'+ value.start + '</td>';
@@ -157,6 +160,7 @@
         html +='<td>'+ value.id + '</td>';
         html +='</tr>';
     });
+    html +='</tbody>';
     $('#appointments').html(html);
   };
 
