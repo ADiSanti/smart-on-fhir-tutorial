@@ -138,7 +138,7 @@
     $('#lname').html(p.lname);
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
-    var appointmentsHtml = '';
+    var html = '';
     $.each(p.appointments,function(key,value){
         html +='<tr>';
         html +='<td>'+ value.start + '</td>';
@@ -149,7 +149,7 @@
         html +='<td>'+ value.id + '</td>';
         html +='</tr>';
     });
-    $('#appointments').html(appointmentsHtml);
+    $('#appointments').html(html);
   };
 
 })(window);
