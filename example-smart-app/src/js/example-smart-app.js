@@ -45,6 +45,18 @@
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
+
+          p.appointments = obv.map(appointment => {
+              var formatedAppointment = defaultAppointment();
+              formatedAppointment.start = appointment.start;
+              formatedAppointment.end = appointment.end;
+              formatedAppointment.minutesDuration = appointment.minutesDuration;
+              formatedAppointment.description = appointment.description;
+              formatedAppointment.status = appointment.status;
+              formatedAppointment.id = appointment.id;
+              return formatedAppointment
+            }
+          );
           // p.height = getQuantityValueAndUnit(height[0]);
 
           // if (typeof systolicbp != 'undefined')  {
@@ -76,11 +88,7 @@
       lname: {value: ''},
       gender: {value: ''},
       birthdate: {value: ''},
-      height: {value: ''},
-      systolicbp: {value: ''},
-      diastolicbp: {value: ''},
-      ldl: {value: ''},
-      hdl: {value: ''},
+      appointments: [],
     };
   }
 
@@ -130,11 +138,18 @@
     $('#lname').html(p.lname);
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
-    $('#height').html(p.height);
-    $('#systolicbp').html(p.systolicbp);
-    $('#diastolicbp').html(p.diastolicbp);
-    $('#ldl').html(p.ldl);
-    $('#hdl').html(p.hdl);
+    var appointmentsHtml = '';
+    $.each(p.appointments,function(key,value){
+        html +='<tr>';
+        html +='<td>'+ value.start + '</td>';
+        html +='<td>'+ value.end + '</td>';
+        html +='<td>'+ value.minutesDuration + '</td>';
+        html +='<td>'+ value.description + '</td>';
+        html +='<td>'+ value.status + '</td>';
+        html +='<td>'+ value.id + '</td>';
+        html +='</tr>';
+    });
+    $('#appointments').html(appointmentsHtml);
   };
 
 })(window);
