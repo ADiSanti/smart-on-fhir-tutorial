@@ -139,6 +139,14 @@
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
     var html = '';
+    html +='<tr>';
+    html +='<th>Start:</th>'
+    html +='<th>End:</th>'
+    html +='<th>Minutes Duration:</th>'
+    html +='<th>Description:</th>'
+    html +='<th>Status:</th>'
+    html +='<th>ID:</th>'
+    html +='</tr>';
     $.each(p.appointments,function(key,value){
         html +='<tr>';
         html +='<td>'+ value.start + '</td>';
