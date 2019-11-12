@@ -14,6 +14,7 @@
         var obv = smart.patient.api.fetchAll({
                     type: 'Appointment',
                     query: {
+                      patient: patient.id,
                       date: '2017'
                     }
                   });
