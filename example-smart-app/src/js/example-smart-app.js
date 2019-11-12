@@ -12,7 +12,7 @@
         var patient = smart.patient;
         var pt = patient.read();
         var obv = smart.patient.api.fetchAll({
-                    type: 'Observation',
+                    type: 'Appointment',
                     query: {
                       code: {
                         $or: ['http://loinc.org|8302-2', 'http://loinc.org|8462-4',
