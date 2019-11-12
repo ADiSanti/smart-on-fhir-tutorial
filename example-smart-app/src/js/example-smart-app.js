@@ -11,23 +11,22 @@
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
-        console.log(patient);
-        console.log(pt);
         var obv = smart.patient.api.fetchAll({
                     type: 'Appointment',
                     query: {
-                      
+                      date = 2017
                     }
                   });
 
         $.when(pt, obv).fail(onError);
 
         $.when(pt, obv).done(function(patient, obv) {
+          console.log(obv);
           // var byCodes = smart.byCodes(obv, 'code');
-          // var gender = patient.gender;
+          var gender = patient.gender;
 
-          // var fname = '';
-          // var lname = '';
+          var fname = '';
+          var lname = '';
 
           if (typeof patient.name[0] !== 'undefined') {
             fname = patient.name[0].given.join(' ');
@@ -40,11 +39,11 @@
           // var hdl = byCodes('2085-9');
           // var ldl = byCodes('2089-1');
 
-          // var p = defaultPatient();
-          // p.birthdate = patient.birthDate;
-          // p.gender = gender;
-          // p.fname = fname;
-          // p.lname = lname;
+          var p = defaultPatient();
+          p.birthdate = patient.birthDate;
+          p.gender = gender;
+          p.fname = fname;
+          p.lname = lname;
           // p.height = getQuantityValueAndUnit(height[0]);
 
           // if (typeof systolicbp != 'undefined')  {
