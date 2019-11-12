@@ -1,0 +1,43 @@
+{
+  "user": "1234",
+  "type": "patient",
+  "visit": "12345",
+  "date": "1570541968",
+  "patient": {
+    "properties": {
+      "id": "1234",
+      "sex": "female",
+      "dob": "1975-07-17",
+      "firstName": "Jane",
+      "lastName": "Doe"
+    }
+  }
+}
+
+
+// {"user":"Agus","type":"patient","visit":"aVisit","date":"1570541968","patient":{"properties":{"id":"1234","sex":"female","dob":"1975-07-17","firstName":"Jane","lastName":"Doe"}}}
+
+// openssl enc -aes-256-cbc -k "1Tal4yLKrfftSCrLot5frXrRNNKNZQ3K" -P -md sha256
+// 6AC00B4DE1CA3298=ECB9259EDAA217E6FDA6B4C186E87F2A==F430791BBAE369A8D844C645BC546224A636DF92E998B372CBD76E4204EA6E06
+// https://intouch.demo.visitnow.org/integrations/linking?arg=
+
+// https://intouch.demo.visitnow.org/integrations/linking?arg=6AC00B4DE1CA3298=ECB9259EDAA217E6FDA6B4C186E87F2A==eyJ1c2VyIjoiQWd1cyIsInR5cGUiOiJwYXRpZW50IiwidmlzaXQiOiJhVmlzaXQiLCJkYXRlIjoiMTU3MDU0MTk2OCIsInBhdGllbnQiOnsicHJvcGVydGllcyI6eyJpZCI6IjEyMzQiLCJzZXgiOiJmZW1hbGUiLCJkb2IiOiIxOTc1LTA3LTE3IiwiZmlyc3ROYW1lIjoiSmFuZSIsImxhc3ROYW1lIjoiRG9lIn19fQo=
+
+1. Get secret key on practice settings // aioNvUjOwUJ063wj8oXuFI0eQqoQIkbK
+2. openssl enc -aes-256-cbc -k "aioNvUjOwUJ063wj8oXuFI0eQqoQIkbK" -P -md sha256 //generate salt, key and iv
+3. 
+salt=3EC479D46A578877
+key=582A25748576F581C723E974499E1AE466E59939DD8C0DE0960C8EADF3BABA24
+iv =838CA99FA7D29038D3BEA77F9B17F20E
+4. Encode salt, and IV using base64
+echo 3EC479D46A578877 | openssl base64 -e
+Salt= M0VDNDc5RDQ2QTU3ODg3Nwo=
+echo 838CA99FA7D29038D3BEA77F9B17F20E | openssl base64 -e
+IV= ODM4Q0E5OUZBN0QyOTAzOEQzQkVBNzdGOUIxN0YyMEUK
+5. Encrypt JSON data
+openssl aes-256-cbc -salt -a -e -in ITH_APPS/data.json (use key from step 3)
+
+encryptedData= U2FsdGVkX18tmZqpwNzOtjK8rDZLpQspt0ZrADoRqmItRvxqDdxMiuzLLtNJhrFo
+
+
+/integrations/linking?arg=M0VDNDc5RDQ2QTU3ODg3Nwo=ODM4Q0E5OUZBN0QyOTAzOEQzQkVBNzdGOUIxN0YyMEUKU2FsdGVkX18MshAZy+3qJ90DlNaODyiqZRkQvP0I6/dsADf31K5zwBIAEcxNaqt9/1TgThwZsoWbWLYLI54XsqtMsgy/ZtizMs2MKEGmWFit+h1X9trX7/xRyK59hlVMaleracxffFa3O/WdUyGtRfeAGeQJ4txqx+Lmv5eVksJ1ZDBqcGgktdUx01ObGFvJ4ZxxwQdJg92zp6pTn/9safUYnRPSrnkMlxQgpJUJ6SS68wFuJcbJiJ3Tdv8/jpAcQDUnglrKx8vLPfzQFUymmA==

@@ -86,6 +86,17 @@
     };
   }
 
+  function defaultAppointment(){
+    return {
+      description: {value: ''},
+      start: {value: ''},
+      end: {value: ''},
+      minutesDuration: {value: ''},
+      participant: {value: ''},
+      location: {value: ''}
+    };
+  }
+
   function getBloodPressureValue(BPObservations, typeOfPressure) {
     var formattedBPObservations = [];
     BPObservations.forEach(function(observation){

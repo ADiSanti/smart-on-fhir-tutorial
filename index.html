@@ -321,7 +321,7 @@ After initially registering your SMART app, it can take up to 10 minutes for you
     <span class="nt">&lt;script&gt;</span>
       <span class="nx">FHIR</span><span class="p">.</span><span class="nx">oauth2</span><span class="p">.</span><span class="nx">authorize</span><span class="p">({</span>
         <span class="s1">'client_id'</span><span class="p">:</span> <span class="s1">'&lt;enter your client id here&gt;'</span><span class="p">,</span>
-        <span class="s1">'scope'</span><span class="p">:</span>  <span class="s1">'patient/Patient.read patient/Observation.read launch online_access openid profile'</span>
+        <span class="s1">'scope'</span><span class="p">:</span>  <span class="s1">'patient/Patient.read patient/Appointment.read launch online_access openid profile'</span>
       <span class="p">});</span>
     <span class="nt">&lt;/script&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
@@ -351,7 +351,7 @@ After initially registering your SMART app, it can take up to 10 minutes for you
 <td>Permission to read Patient resource for the current patient.</td>
 </tr>
 <tr>
-<td>patient/Observation.read</td>
+<td>patient/Appointment.read</td>
 <td>Permission to read Observation resource for the current patient.</td>
 </tr>
 <tr>
@@ -364,7 +364,7 @@ After initially registering your SMART app, it can take up to 10 minutes for you
 </tr>
 <tr>
 <td>launch/patient</td>
-<td>Permission to have a patient be selected when performing a patient facing standalone launch. Required ONLY for patient standalone launch. Apps can choose to use user/Patient.read or user/Observation.read scopes and wouldn&rsquo;t need launch scope at all. See this section: <a href="#standalone-app-launch-for-patient-access-workflow">Standalone App Launch for Patient Access Workflow</a>.</td>
+<td>Permission to have a patient be selected when performing a patient facing standalone launch. Required ONLY for patient standalone launch. Apps can choose to use user/Patient.read or user/Appointment.read scopes and wouldn&rsquo;t need launch scope at all. See this section: <a href="#standalone-app-launch-for-patient-access-workflow">Standalone App Launch for Patient Access Workflow</a>.</td>
 </tr>
 <tr>
 <td>online_access</td>
@@ -372,11 +372,11 @@ After initially registering your SMART app, it can take up to 10 minutes for you
 </tr>
 </tbody></table>
 
-<p>For our app we will use Patient.read, Observation.read.
+<p>For our app we will use Patient.read, Appointment.read.
 We will always include launch, online_access, openid &amp; profile scopes to our app.</p>
 
 <aside class="notice">
-Cerner does not allow use of wildcards(*). So instead of patient/*.read you will need to specify a particular scope of resource you will be using. Something like patient/Patient.read, patient/Observation.read etc. For the list of resources, visit <a href='http://fhir.cerner.com'>http://fhir.cerner.com/</a>.
+Cerner does not allow use of wildcards(*). So instead of patient/*.read you will need to specify a particular scope of resource you will be using. Something like patient/Patient.read, patient/Appointment.read etc. For the list of resources, visit <a href='http://fhir.cerner.com'>http://fhir.cerner.com/</a>.
 </aside>
 
 <p>So just what exactly is the <code class="prettyprint">FHIR.oauth2.authorize</code> method doing?</p>
@@ -709,7 +709,7 @@ https://<code class="prettyprint">&lt;gh-username&gt;</code>.github.io/smart-on-
 &lt;script&gt;
   FHIR.oauth2.authorize({
     'client_id': 'YOUR-SMART-HEALTH-IT-CLIENT-ID-HERE',
-    'scope':  'patient/Patient.read patient/Observation.read launch online_access openid profile'
+    'scope':  'patient/Patient.read patient/Appointment.read launch online_access openid profile'
   });
 &lt;/script&gt;
 ...
@@ -785,7 +785,7 @@ https://<code class="prettyprint">&lt;gh-username&gt;</code>.github.io/smart-on-
 <pre class="highlight html"><code>  <span class="nt">&lt;script&gt;</span>
     <span class="nx">FHIR</span><span class="p">.</span><span class="nx">oauth2</span><span class="p">.</span><span class="nx">authorize</span><span class="p">({</span>
       <span class="s1">'client_id'</span><span class="p">:</span> <span class="s1">'&lt;enter your client id here&gt;'</span><span class="p">,</span>
-      <span class="s1">'scope'</span><span class="p">:</span>  <span class="s1">'patient/Patient.read patient/Observation.read launch/patient online_access openid profile'</span>
+      <span class="s1">'scope'</span><span class="p">:</span>  <span class="s1">'patient/Patient.read patient/Appointment.read launch/patient online_access openid profile'</span>
     <span class="p">});</span>
   <span class="nt">&lt;/script&gt;</span>
 </code></pre>
